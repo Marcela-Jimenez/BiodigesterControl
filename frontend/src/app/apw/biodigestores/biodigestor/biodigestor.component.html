@@ -51,18 +51,75 @@
 </div>
 <div class="container shadow mt-5 d-flex justify-content-between p-3">
     <div class="card col-2">
-        
+
         <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <ngx-charts-line-chart class="card-text" [view]="[200,200]" [legend]="false" [showXAxisLabel]="false" [showYAxisLabel]="false"
-            [xAxis]="false" [yAxis]="false" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel" [timeline]="timeline"
-            [results]="multi">
-        </ngx-charts-line-chart>
+            <h5 class="card-title text-center mb-5">Humedad Relativa</h5>
+
+            <ngx-charts-line-chart class="card-text" [view]="[200,200]" [results]="[relativeHumedity]">
+            </ngx-charts-line-chart>
+
             <div>
-                <input class="range" type="range" value="0" min="0" max="100" />
-                <span class="fs-1" id="rangeValue">0</span>
+                <input class="range" type="range" [disabled]="true" value="{{lastReadHumedity}}" min="0" max="100" />
+                <span class="fs-1" id="rangeValue">{{lastReadHumedity}}</span>
             </div>
         </div>
     </div>
+    <div class="card col-2">
+
+        <div class="card-body">
+            <h5 class="card-title text-center mb-3">Temperatura Decimal</h5>
+
+            <ngx-charts-line-chart class="card-text" [view]="[200,200]" [results]="relativeTemperature">
+            </ngx-charts-line-chart>
+
+            <div>
+                <input class="range" type="range" [disabled]="true" value="{{lastReadTemperature}}" min="0" max="100" />
+                <span class="fs-1" id="rangeValue">{{lastReadTemperature}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="card col-2">
+
+        <div class="card-body">
+            <h5 class="card-title text-center mb-5">Calidad del aire</h5>
+
+            <ngx-charts-line-chart class="card-text" [view]="[200,200]" [results]="[relativeAirQuality]">
+            </ngx-charts-line-chart>
+
+            <div>
+                <input class="range" type="range" [disabled]="true" value="{{lastReadAirQuality}}" min="0" max="100" />
+                <span class="fs-1" id="rangeValue">{{lastReadAirQuality}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="card col-2">
+
+        <div class="card-body">
+            <h5 class="card-title text-center mb-5">Gas</h5>
+
+            <ngx-charts-line-chart class="card-text" [view]="[200,200]" [results]="[relativeGas]">
+            </ngx-charts-line-chart>
+
+            <div>
+                <input class="range" type="range" [disabled]="true" value="{{lastReadGas}}" min="0" max="100" />
+                <span class="fs-1" id="rangeValue">{{lastReadGas}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="card col-2">
+
+        <div class="card-body">
+            <h5 class="card-title text-center mb-3">Monoxido de Carbono (CO)</h5>
+
+            <ngx-charts-line-chart class="card-text" [view]="[200,200]" [results]="[relativeCO]">
+            </ngx-charts-line-chart>
+
+            <div>
+                <input class="range" type="range" [disabled]="true" value="{{lastReadCO}}" min="0" max="100" />
+                <span class="fs-1" id="rangeValue">{{lastReadCO}}</span>
+            </div>
+        </div>
+    </div>
+
 
 </div>

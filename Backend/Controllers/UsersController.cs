@@ -1,4 +1,5 @@
 ﻿using Backend.Models;
+using Backend.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -30,7 +31,9 @@ namespace Backend.Controllers
         {
             try
             {
+                user.Password = Encript.GetSHA256(user.Password);
                 await _context.Users.AddAsync(user);
+
                 await _context.SaveChangesAsync();
                 return Ok(new { State="Success", Message = "Usuario Creado" });
             }
