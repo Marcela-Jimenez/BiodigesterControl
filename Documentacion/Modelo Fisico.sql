@@ -1,4 +1,3 @@
-
 CREATE TABLE rol(
 	id INT IDENTITY(1,1) PRIMARY KEY,
 	name VARCHAR (50),
@@ -18,10 +17,12 @@ CREATE TABLE users(
 );
 
 INSERT INTO users(id_email,password, id_rol,name) VALUES 
-('admin@correo.com','1234',1,'Administrador');
+('admin@correo.com','ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f',1,'Administrador');
 
 CREATE TABLE biodigester(
-	id_token VARCHAR(12) PRIMARY KEY,
+	id INT IDENTITY(1,1) PRIMARY KEY,
+	id_token VARCHAR(12) NOT NULL UNIQUE,
+	state BIT NOT NULL,
 	u_agri_environmental VARCHAR(150) NOT NULL,
 	temp_point INT NOT NULL,
 	light BIT NOT NULL,
@@ -33,6 +34,7 @@ CREATE TABLE biodigester(
 
 INSERT INTO biodigester(
 	id_token,
+	state,
 	u_agri_environmental,
 	temp_point,
 	light,
@@ -42,6 +44,7 @@ INSERT INTO biodigester(
 	derivative_time
 ) VALUES(
 	'qe573c9DzlQ4',
+	1,
 	'Vergel',
 	20,
 	1,
@@ -53,19 +56,20 @@ INSERT INTO biodigester(
 
 CREATE TABLE user_biodigester(
 	id_email VARCHAR(100) NOT NULL,
-	id_token VARCHAR(12) NOT NULL,
-	PRIMARY KEY(id_email,id_token),
+	id_bio INT NOT NULL,
+	PRIMARY KEY(id_email,id_bio),
 	FOREIGN KEY (id_email) REFERENCES users(id_email),
-	FOREIGN KEY (id_token) REFERENCES biodigester(id_token)
+	FOREIGN KEY (id_bio) REFERENCES biodigester(id)
 );
 
 CREATE TABLE read_biodigester(
-	id_token VARCHAR(12) NOT NULL,
+	id_bio INT NOT NULL,
 	date_read DATETIME NOT NULL,
 	humidety FLOAT NOT NULL,
 	temperature FLOAT NOT NULL,
 	air_quality INT NOT NULL,
 	gas INT NOT NULL,
 	carbon_monoxide INT NOT NULL,
-	PRIMARY KEY (id_token,date_read)
+	PRIMARY KEY (id_bio,date_read),
+	FOREIGN KEY (id_bio) REFERENCES biodigester(id)
 );

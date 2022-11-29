@@ -5,8 +5,8 @@ namespace Backend.Models
     [Table("read_biodigester")]
 	public class ReadBiodigester
 	{
-		[Column("id_token")]
-		public string IdToken { get; set; }
+		[Column("id_bio")]
+		public int Id { get; set; }
 		[Column("date_read")]
 		public DateTime DateRead { get; set; }
 		[Column("humidety")]

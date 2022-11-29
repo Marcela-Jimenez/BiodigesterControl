@@ -24,5 +24,22 @@ namespace Backend.Controllers
             List<User> users = await _context.Users.ToListAsync();
             return Ok(users);
         }
+
+        [HttpPost]
+        public async Task<ActionResult> createUser(User user)
+        {
+            try
+            {
+                await _context.Users.AddAsync(user);
+                await _context.SaveChangesAsync();
+                return Ok(new { State="Success", Message = "Usuario Creado" });
+            }
+            catch(Exception ex)
+            {
+                return Ok(new { State="Error", Message = "Ocurrio un error al crear el usuario" });
+            }
+            
+            
+        }
     }
 }

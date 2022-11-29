@@ -22,7 +22,8 @@ namespace Backend.Controllers
             _context = context;
             _secretKey = config.GetSection("secretKey")?.ToString();
         }
-        [HttpPost]
+
+            [HttpPost]
         public async Task<ActionResult> login(Login credentials)
         {
             string ePassword = Encript.GetSHA256(credentials.Password);
@@ -30,10 +31,10 @@ namespace Backend.Controllers
             x.IdEmail==credentials.Email && x.Password==ePassword);
             if (user == null)
             {
-                return BadRequest(new {message="Usuario o Contraseña Inválidos"});
+                return Ok(new {message="Usuario o Contraseña Inválidos"});
             }
             string token = genereteToken(user);
-            return Ok(new{token=token });
+            return Ok(new{ message = "Ok", token =token });
         }
         private string genereteToken(User user)
         {

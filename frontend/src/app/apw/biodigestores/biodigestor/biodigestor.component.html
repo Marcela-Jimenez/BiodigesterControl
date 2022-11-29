@@ -1,43 +1,68 @@
-<div class="container shadow mt-5 d-flex justify-content-between" >
+<div class="container shadow mt-5 d-flex justify-content-between p-3">
     <div>
         <h4 class="card-title">
             <p>PID</p>
         </h4>
         <div class="form-floating mb-3">
-            <input type="number" class="form-control" id="floatingInput" placeholder="name@example.com">
+            <input type="number" class="form-control" [(ngModel)]="biodigester.proportionalGain" id="floatingInput">
             <label for="floatingInput">Proportional Gain</label>
         </div>
         <div class="form-floating mb-3">
-            <input type="number" class="form-control" id="floatingInput" placeholder="name@example.com">
-            <label for="floatingInput">Integral Time</label>
+            <input type="number" class="form-control" [(ngModel)]="biodigester.integralTime" id="floatingInput1">
+            <label for="floatingInput1">Integral Time</label>
         </div>
         <div class="form-floating mb-3">
-            <input type="number" class="form-control" id="floatingInput" placeholder="name@example.com">
-            <label for="floatingInput">Derivate Time</label>
+            <input type="number" class="form-control" [(ngModel)]="biodigester.derivativeTime" id="floatingInput2">
+            <label for="floatingInput2">Derivate Time</label>
         </div>
     </div>
     <div>
-        <span class="fs-1" id="rangeValue">0</span>
-        <input class="range" type="range" value="0" min="0" max="1000" (onChange)="rangeSlide()" onmousemove="rangeSlide(this.value)"/>
+        <input class="range" type="range" [value]="biodigester.tempPoint" min="0" max="100"
+            (change)="rangeSlide($event)" />
+        <span class="fs-1" id="rangeValue">{{biodigester.tempPoint}}</span>
     </div>
     <div>
         <div>
-            
+            <p>
+                <label class="switch">
+                    <input type="checkbox" [(ngModel)]="biodigester.light">
+                    <span class="slider"></span>
+                </label>
+                <label class="ms-3 align-middle fs-3">Luces</label>
+            </p>
+            <p>
+                <label class="switch">
+                    <input type="checkbox" [(ngModel)]="biodigester.fan">
+                    <span class="slider"></span>
+                </label>
+                <label class="ms-3 align-middle fs-3">Ventilador</label>
+            </p>
         </div>
     </div>
-    <button type="button" class="btn btn-danger">Detener</button>
+    <div class="row">
+        <div>
+            <button type="button" (click)="startOrStop()" class="btn"
+                [ngClass]="biodigester.state?'btn-danger':'btn-success'">{{biodigester.state?'Detener':'Iniciar'}}</button>
+        </div>
+        <div>
+            <button type="button" class="btn btn-primary " (click)="saveChanges()">Guardar Cambios</button>
+        </div>
+    </div>
 </div>
-<div class="container shadow mt-5 d-flex justify-content-between" >
+<div class="container shadow mt-5 d-flex justify-content-between p-3">
     <div class="card col-2">
-        <img src="..." class="card-img-top" alt="...">
+        
         <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <div>
-            <span class="fs-1" id="rangeValue">0</span>
-            <input class="range" type="range" value="0" min="0" max="1000" (onChange)="rangeSlide()" onmousemove="rangeSlide(this.value)"/>
+            <h5 class="card-title">Card title</h5>
+            <ngx-charts-line-chart class="card-text" [view]="[200,200]" [legend]="false" [showXAxisLabel]="false" [showYAxisLabel]="false"
+            [xAxis]="false" [yAxis]="false" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel" [timeline]="timeline"
+            [results]="multi">
+        </ngx-charts-line-chart>
+            <div>
+                <input class="range" type="range" value="0" min="0" max="100" />
+                <span class="fs-1" id="rangeValue">0</span>
+            </div>
         </div>
-        </div>
-      </div>
-      
+    </div>
+
 </div>
