@@ -7,8 +7,8 @@ namespace Backend.Models
     {
         [Column("id_email")]
         public string IdEmail { get; set; }
-        [Column("id_token")]
-        public string IdToken { get; set; }
+        [Column("id_bio")]
+        public int Id { get; set; }
 
     }
 }

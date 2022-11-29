@@ -5,8 +5,12 @@ namespace Backend.Models
 	[Table("biodigester")]
 	public class Biodigester
 	{
+		[Column("id")]
+		public int Id { get; set; }
 		[Column("id_token")]
 		public string IdToken { get; set; }
+		[Column("state")]
+		public bool State { get; set; }
 		[Column("u_agri_environmental")]
 		public string UAgriEnvironmental { get; set; }
 		[Column("temp_point")]

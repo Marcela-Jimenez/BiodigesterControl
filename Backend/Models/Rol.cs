@@ -6,8 +6,8 @@ namespace Backend.Models
     public class Rol
     {
         [Column("id")]
-        public int id { get; set; }
+        public int Id { get; set; }
         [Column("name")]
-        public string name { get; set; }
+        public string Name { get; set; }
     }
 }

@@ -34,11 +34,11 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy(corsConfig, policy =>
     {
-        //policy.WithOrigins("http://localhost:4200");
-        policy.AllowAnyOrigin();
+        policy.WithOrigins("http://localhost:4200");
+        //policy.AllowAnyOrigin();
         policy.AllowAnyHeader();
         policy.AllowAnyMethod();
-        //policy.AllowCredentials();
+        policy.AllowCredentials();
     });
 });
 

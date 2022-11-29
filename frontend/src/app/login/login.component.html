@@ -1,6 +1,6 @@
 <div class="mt-5" >
     <div class="container align-middle w-75" >
-      <form class="shadow p-3 rounded-3">
+      <form class="shadow p-3 rounded-3" [formGroup]="loginForm">
         <div class="col-12 text-center">
           <span class="h2">Biodigester Control</span>
         </div>
@@ -8,16 +8,31 @@
           <img class="text-center" style="width: 12rem;" src="../../assets/images/biodigestor.png" />
         </div>
   
+        <div *ngIf="message" class="alert alert-danger col-12" role="alert">
+          {{message}}
+        </div>
         <div class="form-floating mt-3 mb-3 ">
-          <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+          <input type="email" class="form-control" [ngClass]="{'is-invalid':(loginForm.get('email')?.touched && loginForm.get('email')?.invalid)}" id="floatingInput" formControlName="email" placeholder="name@example.com">
           <label for="floatingInput">Ingrese Email</label>
+          <div class="invalid-feedback">
+            Email Inválido
+          </div>
         </div>
+        
         <div class="form-floating " >
-          <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+          <input type="password" class="form-control" [ngClass]="{'is-invalid':(loginForm.get('password')?.touched && loginForm.get('password')?.invalid)}" id="floatingPassword" formControlName="password" placeholder="Password">
           <label for="floatingPassword">Ingrese Contraseña</label>
+          <div class="invalid-feedback">
+            Contraseña Inválida (Debe contener mas de 8 carácteres)
+          </div>
         </div>
+        
         <div class="col-11 mt-3 text-end">
-          <button type="submit" class="btn btn-success">Iniciar Sesión</button>
+          <button (click)="onSubmit()" [disabled]="isLogin" class="btn btn-success">
+            <span class="spinner-border spinner-border-sm" [hidden]="!isLogin" role="status" aria-hidden="true"></span>
+            Iniciar Sesión
+            
+          </button>
         </div>
       </form>
     </div>

@@ -7,7 +7,7 @@
       <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" routerLink="/">Inicio</a>
+            <a class="nav-link active" aria-current="page" routerLink="">Inicio</a>
           </li>
           <li class="nav-item">
             <a class="nav-link active" routerLink="/biodigestores">Biodigestores</a>
@@ -19,8 +19,8 @@
             <a class="nav-link active" routerLink="/reportes">Reportes</a>
           </li>
         </ul>
-        <span class="navbar-text">
-          <a class="nav-link active pe-4"> Salir </a>
+        <span class="nav-item">
+          <a class="nav-link active pe-4" (click)="logOut()" routerLink="/login">Salir</a>
         </span>
       </div>
     </div>
