@@ -14,7 +14,6 @@ export class LoginService {
   constructor(private http:HttpClient) { }
 
   authenticate(login:Login):Observable<Object>{
-    console.log(login);
     return this.http.post(this.urlApi+'/Login',login);
   }
 

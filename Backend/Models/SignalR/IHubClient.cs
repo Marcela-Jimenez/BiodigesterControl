@@ -1,7 +1,8 @@
-﻿namespace Backend.Models.SignalR
+﻿
+namespace Backend.Models.SignalR
 {
     public interface IHubClient
     {
-        Task getReads(string notify);
+        Task getReads(ReadBiodigester read);
     }
 }

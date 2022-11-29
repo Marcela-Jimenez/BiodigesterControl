@@ -6,10 +6,10 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
-const string corsConfig = "_CorsConfig";
+string corsConfig = "_CorsConfig";
 // Add services to the container.
 var secretKey = builder.Configuration.GetSection("secretKey").ToString();
-
+/*
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
 {
     options.TokenValidationParameters = new TokenValidationParameters
@@ -19,7 +19,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
         ValidateIssuer = false,
         ValidateAudience = false
     };
-});
+});*/
 
 
 builder.Services.AddControllers();
@@ -30,19 +30,20 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("devConnection"));
 });
+builder.Services.AddSignalR();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(corsConfig, policy =>
     {
-        policy.WithOrigins("http://localhost:4200");
-        //policy.AllowAnyOrigin();
+        policy.AllowCredentials();
         policy.AllowAnyHeader();
         policy.AllowAnyMethod();
-        policy.AllowCredentials();
+        policy.WithOrigins("http://localhost:4200");
+        //policy.AllowAnyOrigin();
     });
 });
 
-builder.Services.AddSignalR();
+
 
 var app = builder.Build();
 
@@ -55,17 +56,20 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-/*app.UseAuthentication();
-app.UseAuthorization();*/
+/*app.UseAuthentication();*/
+app.UseAuthorization();
 
 app.UseCors(corsConfig);
 
 app.UseRouting();
 
 app.UseEndpoints(endpoint => {
-    endpoint.MapHub<BroadCastHub>("/NotifyHub");
+    endpoint.MapHub<BroadCastHub>("/api/hubReadBiodigester");
 });
 
-app.MapControllers();
+app.UseEndpoints(enpoint =>
+{
+    enpoint.MapControllers();
+});
 
 app.Run();

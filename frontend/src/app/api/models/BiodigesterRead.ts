@@ -1,9 +1,9 @@
 export interface BiodigesterRead{
-    id_bio:number;
-	date_read:number;
+    idBio:number;
+	dateRead:number;
 	humidety:number;
 	temperature:number;
-	air_quality :number;
+	airQuality :number;
 	gas:number;
-	carbon_monoxide:number;
+	carbonMonoxid:number;
 }

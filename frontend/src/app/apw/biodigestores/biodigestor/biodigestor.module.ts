@@ -8,7 +8,6 @@ import { BiodigesterService } from 'src/app/api/services';
 import { FormsModule } from '@angular/forms';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 
-
 @NgModule({
   declarations: [
     BiodigestorComponent
