@@ -5,6 +5,7 @@ import { BiodigestoresRoutingModule } from './biodigestores-routing.module';
 import { BiodigestoresComponent } from './biodigestores.component';
 import { BiodigesterService } from 'src/app/api/services';
 import { HttpClientModule } from '@angular/common/http';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 @NgModule({
@@ -14,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     CommonModule,
     BiodigestoresRoutingModule,
+    FontAwesomeModule,
     HttpClientModule
   ],
   providers:[BiodigesterService]

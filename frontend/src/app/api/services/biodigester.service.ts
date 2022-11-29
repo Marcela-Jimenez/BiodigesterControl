@@ -22,4 +22,7 @@ export class BiodigesterService {
   actualizarBiodigestor(id:number, biodigester:Biodigester):Observable<Object>{
     return this.http.put(this.apiUrl+'/biodigester/'+id,biodigester);
   }
+  addBiodigester(biodigester:Biodigester):Observable<Object>{
+    return this.http.post(this.apiUrl+'/biodigester',biodigester);
+  }
 }

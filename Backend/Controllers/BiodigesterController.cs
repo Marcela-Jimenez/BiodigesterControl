@@ -21,6 +21,26 @@ namespace Backend.Controllers
             List<Biodigester> biodigesters = await _context.Biodigesters.ToListAsync();
             return Ok(biodigesters);
         }
+
+        [HttpPost]
+        public async Task<ActionResult> addBiodigesters(Biodigester biodigester)
+        {
+            try
+            {
+                await _context.Biodigesters.AddAsync(biodigester);
+                await _context.SaveChangesAsync();
+                return Ok(new { Status = "Success", Id = biodigester.Id });
+            }
+            catch (Exception ex)
+            {
+                return Ok(new
+                {
+                    Status = "Failend"
+                });
+            }
+        }
+
+
         [HttpGet("{id}")]
         public async Task<ActionResult> getBiodigesters(int id)
         {

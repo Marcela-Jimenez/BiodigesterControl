@@ -1,5 +1,5 @@
 <div class="mt-5" >
-    <div class="container align-middle w-75" >
+    <div class="container align-middle" style="width: 45rem;" >
       <form class="shadow p-3 rounded-3" [formGroup]="loginForm">
         <div class="col-12 text-center">
           <span class="h2">Biodigester Control</span>
@@ -27,11 +27,10 @@
           </div>
         </div>
         
-        <div class="col-11 mt-3 text-end">
+        <div class="col-12 mt-3 text-end">
           <button (click)="onSubmit()" [disabled]="isLogin" class="btn btn-success">
             <span class="spinner-border spinner-border-sm" [hidden]="!isLogin" role="status" aria-hidden="true"></span>
             Iniciar Sesión
-            
           </button>
         </div>
       </form>
