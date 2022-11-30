@@ -112,6 +112,14 @@ export class BiodigestorComponent implements OnInit {
       const bioRead:BiodigesterRead = read;
       this.biodigesterReadsPerSecond.push(bioRead);
       //humedity
+      if(this.biodigesterReadsPerSecond.length>=60){
+        this.seriesHumedity.shift();
+        this.seriesTemperature.shift();
+        this.seriesSetPoint.shift();
+        this.seriesAirQuality.shift();
+        this.seriesGas.shift();
+        this.seriesCO.shift();
+      }
       this.seriesHumedity.push({value:bioRead.humidety,name:this.biodigesterReadsPerSecond.length});
       this.relativeHumedity={
         name: "Humedad",
