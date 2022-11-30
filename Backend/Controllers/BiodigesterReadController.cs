@@ -86,8 +86,7 @@ namespace Backend.Controllers
         [HttpGet]
         public async Task<ActionResult> activarReloj()
         {
-            //Descomentar esto es desatar a satan (Bombardea SignalR enviando valores aleotorios con el fin de hacer una prueba de estres)
-            //reloj();
+            reloj();
             return Ok("Ok");
         }
         private async Task reloj()
@@ -106,7 +105,7 @@ namespace Backend.Controllers
                     DateRead = DateTime.Now
                 };
                 await addRead(read);
-                await Task.Delay(20);
+                await Task.Delay(1000);
             }
         }
     }
