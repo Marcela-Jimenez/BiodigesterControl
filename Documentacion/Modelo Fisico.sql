@@ -6,7 +6,7 @@ CREATE TABLE rol(
 
 INSERT INTO rol(name,description) VALUES
 ('Administrador','Usuario en calidad de administrador el cual dispone con el control total del software'),
-('Supervisor','Usuario en calidad de supervisor el cual dispone de funciones de supervisión');
+('Supervisor','Usuario en calidad de supervisor el cual dispone de funciones de supervisiï¿½n');
 
 CREATE TABLE users(
 	id_email VARCHAR(100) PRIMARY KEY,
@@ -65,11 +65,12 @@ CREATE TABLE user_biodigester(
 CREATE TABLE read_biodigester(
 	id_bio INT NOT NULL,
 	date_read DATETIME NOT NULL,
-	humidety FLOAT NOT NULL,
-	temperature FLOAT NOT NULL,
-	air_quality INT NOT NULL,
-	gas INT NOT NULL,
-	carbon_monoxide INT NOT NULL,
+	relative_humidety FLOAT NOT NULL,
+	inside_temperature FLOAT NOT NULL,
+	outside_temperature FLOAT NOT NULL,
+	ph_biol FLOAT NOT NULL,
+	presion FLOAT NOT NULL,
+	MiliVoltios FLOAT NOT NULL,
 	PRIMARY KEY (id_bio,date_read),
 	FOREIGN KEY (id_bio) REFERENCES biodigester(id)
 );

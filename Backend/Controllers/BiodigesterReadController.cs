@@ -58,27 +58,30 @@ namespace Backend.Controllers
 
         private ReadBiodigester calcReads(List<ReadBiodigester> reads)
         {
-            double acuTemp = 0;
-            double acuHumedity = 0;
-            double acuAirQuality = 0;
-            double acuGas = 0;
-            double acuCO = 0;
+            double acuRelHumedity = 0;
+            double acuInTemp = 0;
+            double acuOutTemp = 0;
+            double acuPHBiol = 0;
+            double acuPresion = 0;
+            double acuMiliVoltios = 0;
+            
             foreach (ReadBiodigester readBio in reads)
             {
-                acuTemp += readBio.Temperature;
-                acuAirQuality += readBio.AirQuality;
-                acuHumedity += readBio.Humidety;
-                acuGas += readBio.Gas;
-                acuCO += readBio.CarbonMonoxid;
+                acuRelHumedity += readBio.RelativeHumidety;
+                acuInTemp += readBio.InsideTemperature;
+                acuOutTemp += readBio.OutsideTemperature;
+                acuPHBiol += readBio.PHBiol;
+                acuPresion += readBio.Presion;
+                acuMiliVoltios += readBio.MiliVoltios;
             }
             return new ReadBiodigester {
-                Id=0,
                 DateRead = DateTime.Now,
-                AirQuality = (int)(acuAirQuality / reads.Count),
-                CarbonMonoxid = (int)(acuCO / reads.Count),
-                Gas = (int)(acuGas / reads.Count),
-                Humidety = (int)(acuHumedity / reads.Count),
-                Temperature= (int)(acuTemp / reads.Count)
+                RelativeHumidety = (int)(acuRelHumedity / reads.Count),
+                InsideTemperature = (int)(acuInTemp / reads.Count),
+                OutsideTemperature = (int)(acuOutTemp / reads.Count),
+                PHBiol = (int)(acuPHBiol / reads.Count),
+                Presion= (int)(acuPresion / reads.Count),
+                MiliVoltios = (int)(acuMiliVoltios / reads.Count)
             };
 
         }
@@ -97,15 +100,16 @@ namespace Backend.Controllers
                 ReadBiodigester read = new ReadBiodigester
                 {
                     Id = 0,
-                    AirQuality = rand.Next(100),
-                    CarbonMonoxid = rand.Next(100),
-                    Gas = rand.Next(100),
-                    Humidety = rand.Next(100),
-                    Temperature = rand.Next(100),
-                    DateRead = DateTime.Now
+                    DateRead = DateTime.Now,
+                    RelativeHumidety = rand.Next(100),
+                    InsideTemperature = rand.Next(100),
+                    OutsideTemperature = rand.Next(100),
+                    PHBiol = rand.Next(100),
+                    Presion= rand.Next(100),
+                    MiliVoltios = rand.Next(100)
                 };
                 await addRead(read);
-                await Task.Delay(1000);
+                await Task.Delay(5000);
             }
         }
     }

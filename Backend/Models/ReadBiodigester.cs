@@ -5,19 +5,21 @@ namespace Backend.Models
     [Table("read_biodigester")]
 	public class ReadBiodigester
 	{
-		[Column("id_bio")]
-		public int Id { get; set; }
-		[Column("date_read")]
-		public DateTime DateRead { get; set; }
-		[Column("humidety")]
-		public double Humidety { get; set; }
-		[Column("temperature")]
-		public double Temperature { get; set; }
-		[Column("air_quality")]
-		public int AirQuality { get; set; }
-		[Column("gas")]
-		public int Gas { get; set; }
-		[Column("carbon_monoxid")]
-		public int CarbonMonoxid { get; set; }
-	}
+        [Column("id_bio")]
+        public int? Id { get; set; }
+        [Column("date_read")]
+        public DateTime DateRead { get; set; } = new DateTime();
+        [Column("relative_humidety")]
+        public double RelativeHumidety { get; set; }
+        [Column("inside_temperature")]
+        public double InsideTemperature { get; set; }
+        [Column("outside_temperature")]
+        public double OutsideTemperature { get; set; }
+        [Column("ph_biol")]
+        public double PHBiol { get; set; }
+        [Column("presion")]
+        public double Presion { get; set; }
+        [Column("MiliVoltios")]
+        public double MiliVoltios { get; set; }
+    }
 }
